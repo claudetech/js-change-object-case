@@ -1,4 +1,4 @@
-# change-object-case
+# change-object-case [![Build Status](https://travis-ci.org/claudetech/js-change-object-case.svg?branch=master)](https://travis-ci.org/claudetech/js-change-object-case) [![Coverage Status](https://coveralls.io/repos/claudetech/js-change-object-case/badge.svg?branch=master&service=github)](https://coveralls.io/github/claudetech/js-change-object-case?branch=master)
 
 A library based on [change-case](https://github.com/blakeembrey/change-case) to change object keys case.
 
