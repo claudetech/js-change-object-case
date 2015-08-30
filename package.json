@@ -1,0 +1,33 @@
+{
+  "name": "change-object-case",
+  "version": "0.1.0",
+  "description": "Change case of object and arrays",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test",
+    "prepublish": "make"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/claudetech/js-change-object-case.git"
+  },
+  "keywords": [
+    "case",
+    "cases",
+    "camel",
+    "snake"
+  ],
+  "author": "Daniel Perez <daniel@claudetech.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/claudetech/js-change-object-case/issues"
+  },
+  "homepage": "https://github.com/claudetech/js-change-object-case#readme",
+  "dependencies": {
+    "change-case": "^2.3.0"
+  },
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "mocha": "^2.2.5"
+  }
+}

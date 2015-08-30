@@ -1,0 +1,25 @@
+{
+  "name": "change-object-case",
+  "main": "dist/change-object-case.min.js",
+  "version": "0.1.0",
+  "authors": [
+    "Daniel Perez <daniel@claudetech.com>"
+  ],
+  "moduleType": ["globals", "node"],
+  "description": "Change case of object and arrays",
+  "keywords": [
+    "case",
+    "cases",
+    "camel",
+    "snake"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/claudetech/js-change-object-case",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
