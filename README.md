@@ -35,6 +35,8 @@ changeCase.camelKeys({foo_bar: {bar_baz: [{baz_qux: 1}]}}, {recursive: true, arr
 // {fooBar: {barBaz: [{bazQux: 1}]}}
 changeCase.camelArray([{foo_bar: 1}, 2]);
 // [{fooBar: 1}, 2]
+changeCase.snakeKeys({fooBar: 1});
+// {foo_bar: 1}
 ```
 
 By default, recursion is turned off, and you have to explictly pass `{recursive: true}` to get objects processed recursively and `{arrayRecursive: true}` to get arrays transformed.
