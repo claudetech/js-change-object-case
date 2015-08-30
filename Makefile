@@ -13,6 +13,9 @@ test:
 ci:
 	./node_modules/.bin/mocha -w
 
+publish: all
+	npm publish
+
 coveralls:
 	istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
 

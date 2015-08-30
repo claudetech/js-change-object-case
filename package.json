@@ -4,8 +4,7 @@
   "description": "Change case of object and arrays",
   "main": "index.js",
   "scripts": {
-    "test": "make coveralls",
-    "prepublish": "make"
+    "test": "make coveralls"
   },
   "repository": {
     "type": "git",
