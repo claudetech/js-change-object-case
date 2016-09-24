@@ -76,6 +76,9 @@ function transformObjectKeys(object, f, options) {
 
 function makeObjectTransformation(f) {
   return function (object, options) {
+    if (!object || !object.hasOwnProperty) {
+      return object;
+    }
     return transformObjectKeys(object, f, options);
   };
 }
