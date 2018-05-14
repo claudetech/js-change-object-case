@@ -57,6 +57,14 @@ describe('changeObjectCase', function () {
       expect(fn).to.throw(Error);
     });
 
+    it('should return input again, if input is falsy', function () {
+      var result = changeCase.camelKeys(undefined);
+      expect(result).to.eq(undefined);
+
+      var result = changeCase.camelKeys(false);
+      expect(result).to.eq(false);
+    });
+
     it('should work with nested objects', function () {
       var input = {
         foo_bar: {
@@ -134,6 +142,11 @@ describe('changeObjectCase', function () {
     it('should convert an array', function () {
       var result = changeCase.toCamel([{foo_bar: 1}, 2]);
       expect(result).to.deep.eq([{fooBar: 1}, 2]);
+    });
+
+    it('should convert an object', function () {
+      var result = changeCase.toCamel({foo_bar: 1});
+      expect(result).to.deep.eq({fooBar: 1});
     });
 
     it('should convert a complex, deep, mixed data structure', function () {
