@@ -39,6 +39,12 @@ changeCase.snakeKeys({fooBar: 1});
 // {foo_bar: 1}
 ```
 
+If you don't know the type of your data beforehand, there's also methods that will take arbitrary data, e.g.:
+
+```javascript
+changeCase.toCamel(['string', 1.2, {foo_bar: {bar_baz: [{baz_qux: 1}]}}], {recursive: true, arrayRecursive: true});
+```
+
 By default, recursion is turned off, and you have to explictly pass `{recursive: true}` to get objects processed recursively and `{arrayRecursive: true}` to get arrays transformed.
 You can set these values globally by changing `changeCase.options`:
 

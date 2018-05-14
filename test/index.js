@@ -17,6 +17,7 @@ describe('changeObjectCase', function () {
     for (var i = 0; i < transformationNames.length; i++) {
       expect(changeCase[transformationNames[i] + 'Keys']).to.be.a('function');
       expect(changeCase[transformationNames[i] + 'Array']).to.be.a('function');
+      expect(changeCase['to' + changeCase.ucFirst(transformationNames[i])]).to.be.a('function');
     }
   });
 
@@ -118,4 +119,62 @@ describe('changeObjectCase', function () {
       expect(changeCase.camelKeys({a_b: {b_c: 1}}, {recursive: false})).to.deep.eq({aB: {b_c: 1}});
     });
   });
+
+  describe('toCamel', function () {
+    it('should leave a string as it is', function () {
+      var result = changeCase.toCamel('string');
+      expect(result).to.eq('string');
+    });
+
+    it('should leave a number as it is', function () {
+      var result = changeCase.toCamel(1.2);
+      expect(result).to.eq(1.2);
+    });
+
+    it('should convert an array', function () {
+      var result = changeCase.toCamel([{foo_bar: 1}, 2]);
+      expect(result).to.deep.eq([{fooBar: 1}, 2]);
+    });
+
+    it('should convert a complex, deep, mixed data structure', function () {
+      var input = [
+        'string',
+        1.2,
+        {
+          foo_bar: {
+            bar_baz: [{
+              a_b: [
+                [{b_c: 1}, 8],
+                {c_d: {d_e: 2}},
+                'another_string',
+                2
+              ],
+              c_d: null
+            }]
+          },
+          bar_baz: 1
+        }
+      ];
+      var expected = [
+        'string',
+        1.2,
+        {
+          fooBar: {
+            barBaz: [{
+              aB: [
+                [{bC: 1}, 8],
+                {cD: {dE: 2}},
+                'another_string',
+                2
+              ],
+              cD: null
+            }]
+          },
+          barBaz: 1
+        }
+      ];
+      var result = changeCase.toCamel(input, {recursive: true, arrayRecursive: true});
+      expect(result).to.deep.eq(expected);
+    });
+  })
 });

@@ -89,12 +89,27 @@ function makeArrayTransformation(f) {
   };
 }
 
+// creates functions that accept any kind of data structure
+function makeArbitraryDataTransformation(f) {
+  return function (data, options) {
+    if (isArray(data)) {
+      return transformArray(data, f, options);
+    } else if (isObject(data)) {
+      return transformObjectKeys(data, f, options);
+    } else {
+      return data;
+    }
+  };
+}
+
 function exportTransformation(name) {
   var f = changeCase[name];
   module.exports[name + 'Keys'] = makeObjectTransformation(f);
   module.exports[name + 'Array'] = makeArrayTransformation(f);
+  module.exports['to' + changeCase.ucFirst(name)] = makeArbitraryDataTransformation(f);
 }
 
+// reexport all functions exported by `changeCase`
 for (var i in changeCase) {
   if (changeCase.hasOwnProperty(i)) {
     module.exports[i] = changeCase[i];
