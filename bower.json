@@ -1,7 +1,7 @@
 {
   "name": "change-object-case",
   "main": "dist/change-object-case.min.js",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "authors": [
     "Daniel Perez <daniel@claudetech.com>"
   ],

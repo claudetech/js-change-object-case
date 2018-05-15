@@ -1,4 +1,29 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.changeCase = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.changeCase = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+var upperCase = require('upper-case')
+var sentenceCase = require('sentence-case')
+
+/**
+ * Camel case a string.
+ *
+ * @param  {String} string
+ * @param  {String} [locale]
+ * @return {String}
+ */
+module.exports = function (string, locale, mergeNumbers) {
+  var result = sentenceCase(string, locale)
+
+  // Replace periods between numeric entities with an underscore.
+  if (!mergeNumbers) {
+    result = result.replace(/(\d) (?=\d)/g, '$1_')
+  }
+
+  // Replace spaces between words with an upper cased character.
+  return result.replace(/ (.)/g, function (m, $1) {
+    return upperCase($1, locale)
+  })
+}
+
+},{"sentence-case":12,"upper-case":20}],2:[function(require,module,exports){
 exports.dot = exports.dotCase = require('dot-case')
 exports.swap = exports.swapCase = require('swap-case')
 exports.path = exports.pathCase = require('path-case')
@@ -16,28 +41,7 @@ exports.isLower = exports.isLowerCase = require('is-lower-case')
 exports.ucFirst = exports.upperCaseFirst = require('upper-case-first')
 exports.lcFirst = exports.lowerCaseFirst = require('lower-case-first')
 
-},{"camel-case":2,"constant-case":3,"dot-case":4,"is-lower-case":5,"is-upper-case":6,"lower-case":8,"lower-case-first":7,"param-case":9,"pascal-case":10,"path-case":11,"sentence-case":12,"snake-case":16,"swap-case":17,"title-case":18,"upper-case":20,"upper-case-first":19}],2:[function(require,module,exports){
-var upperCase = require('upper-case')
-var sentenceCase = require('sentence-case')
-
-/**
- * Camel case a string.
- *
- * @param  {String} string
- * @param  {String} [locale]
- * @return {String}
- */
-module.exports = function (string, locale) {
-  return sentenceCase(string, locale)
-    // Replace periods between numeric entities with an underscore.
-    .replace(/(\d) (?=\d)/g, '$1_')
-    // Replace spaces between words with an upper cased character.
-    .replace(/ (.)/g, function (m, $1) {
-      return upperCase($1, locale)
-    })
-}
-
-},{"sentence-case":12,"upper-case":20}],3:[function(require,module,exports){
+},{"camel-case":1,"constant-case":3,"dot-case":4,"is-lower-case":5,"is-upper-case":6,"lower-case":8,"lower-case-first":7,"param-case":9,"pascal-case":10,"path-case":11,"sentence-case":12,"snake-case":16,"swap-case":17,"title-case":18,"upper-case":20,"upper-case-first":19}],3:[function(require,module,exports){
 var upperCase = require('upper-case')
 var snakeCase = require('snake-case')
 
@@ -53,7 +57,7 @@ module.exports = function (string, locale) {
 }
 
 },{"snake-case":16,"upper-case":20}],4:[function(require,module,exports){
-var sentenceCase = require('sentence-case');
+var sentenceCase = require('sentence-case')
 
 /**
  * Dot case a string.
@@ -63,8 +67,8 @@ var sentenceCase = require('sentence-case');
  * @return {String}
  */
 module.exports = function (string, locale) {
-  return sentenceCase(string, locale, '.');
-};
+  return sentenceCase(string, locale, '.')
+}
 
 },{"sentence-case":12}],5:[function(require,module,exports){
 var lowerCase = require('lower-case')
@@ -170,7 +174,7 @@ module.exports = function (str, locale) {
 }
 
 },{}],9:[function(require,module,exports){
-var sentenceCase = require('sentence-case');
+var sentenceCase = require('sentence-case')
 
 /**
  * Param case a string.
@@ -180,8 +184,8 @@ var sentenceCase = require('sentence-case');
  * @return {String}
  */
 module.exports = function (string, locale) {
-  return sentenceCase(string, locale, '-');
-};
+  return sentenceCase(string, locale, '-')
+}
 
 },{"sentence-case":12}],10:[function(require,module,exports){
 var camelCase = require('camel-case')
@@ -198,8 +202,8 @@ module.exports = function (string, locale) {
   return upperCaseFirst(camelCase(string, locale), locale)
 }
 
-},{"camel-case":2,"upper-case-first":19}],11:[function(require,module,exports){
-var sentenceCase = require('sentence-case');
+},{"camel-case":1,"upper-case-first":19}],11:[function(require,module,exports){
+var sentenceCase = require('sentence-case')
 
 /**
  * Path case a string.
@@ -209,8 +213,8 @@ var sentenceCase = require('sentence-case');
  * @return {String}
  */
 module.exports = function (string, locale) {
-  return sentenceCase(string, locale, '/');
-};
+  return sentenceCase(string, locale, '/')
+}
 
 },{"sentence-case":12}],12:[function(require,module,exports){
 var lowerCase = require('lower-case')
@@ -264,7 +268,7 @@ module.exports = /[^\u0041-\u005A\u0061-\u007A\u00AA\u00B5\u00BA\u00C0-\u00D6\u0
 module.exports = /([\u0030-\u0039\u00B2\u00B3\u00B9\u00BC-\u00BE\u0660-\u0669\u06F0-\u06F9\u07C0-\u07C9\u0966-\u096F\u09E6-\u09EF\u09F4-\u09F9\u0A66-\u0A6F\u0AE6-\u0AEF\u0B66-\u0B6F\u0B72-\u0B77\u0BE6-\u0BF2\u0C66-\u0C6F\u0C78-\u0C7E\u0CE6-\u0CEF\u0D66-\u0D75\u0E50-\u0E59\u0ED0-\u0ED9\u0F20-\u0F33\u1040-\u1049\u1090-\u1099\u1369-\u137C\u16EE-\u16F0\u17E0-\u17E9\u17F0-\u17F9\u1810-\u1819\u1946-\u194F\u19D0-\u19DA\u1A80-\u1A89\u1A90-\u1A99\u1B50-\u1B59\u1BB0-\u1BB9\u1C40-\u1C49\u1C50-\u1C59\u2070\u2074-\u2079\u2080-\u2089\u2150-\u2182\u2185-\u2189\u2460-\u249B\u24EA-\u24FF\u2776-\u2793\u2CFD\u3007\u3021-\u3029\u3038-\u303A\u3192-\u3195\u3220-\u3229\u3248-\u324F\u3251-\u325F\u3280-\u3289\u32B1-\u32BF\uA620-\uA629\uA6E6-\uA6EF\uA830-\uA835\uA8D0-\uA8D9\uA900-\uA909\uA9D0-\uA9D9\uAA50-\uAA59\uABF0-\uABF9\uFF10-\uFF19])([^\u0030-\u0039\u00B2\u00B3\u00B9\u00BC-\u00BE\u0660-\u0669\u06F0-\u06F9\u07C0-\u07C9\u0966-\u096F\u09E6-\u09EF\u09F4-\u09F9\u0A66-\u0A6F\u0AE6-\u0AEF\u0B66-\u0B6F\u0B72-\u0B77\u0BE6-\u0BF2\u0C66-\u0C6F\u0C78-\u0C7E\u0CE6-\u0CEF\u0D66-\u0D75\u0E50-\u0E59\u0ED0-\u0ED9\u0F20-\u0F33\u1040-\u1049\u1090-\u1099\u1369-\u137C\u16EE-\u16F0\u17E0-\u17E9\u17F0-\u17F9\u1810-\u1819\u1946-\u194F\u19D0-\u19DA\u1A80-\u1A89\u1A90-\u1A99\u1B50-\u1B59\u1BB0-\u1BB9\u1C40-\u1C49\u1C50-\u1C59\u2070\u2074-\u2079\u2080-\u2089\u2150-\u2182\u2185-\u2189\u2460-\u249B\u24EA-\u24FF\u2776-\u2793\u2CFD\u3007\u3021-\u3029\u3038-\u303A\u3192-\u3195\u3220-\u3229\u3248-\u324F\u3251-\u325F\u3280-\u3289\u32B1-\u32BF\uA620-\uA629\uA6E6-\uA6EF\uA830-\uA835\uA8D0-\uA8D9\uA900-\uA909\uA9D0-\uA9D9\uAA50-\uAA59\uABF0-\uABF9\uFF10-\uFF19])/g
 
 },{}],16:[function(require,module,exports){
-var sentenceCase = require('sentence-case');
+var sentenceCase = require('sentence-case')
 
 /**
  * Snake case a string.
@@ -274,8 +278,8 @@ var sentenceCase = require('sentence-case');
  * @return {String}
  */
 module.exports = function (str, locale) {
-  return sentenceCase(str, locale, '_');
-};
+  return sentenceCase(str, locale, '_')
+}
 
 },{"sentence-case":12}],17:[function(require,module,exports){
 var upperCase = require('upper-case')
@@ -505,6 +509,9 @@ function transformObjectKeys(object, f, options) {
 
 function makeObjectTransformation(f) {
   return function (object, options) {
+    if (!object || !object.hasOwnProperty) {
+      return object;
+    }
     return transformObjectKeys(object, f, options);
   };
 }
@@ -515,12 +522,27 @@ function makeArrayTransformation(f) {
   };
 }
 
+// creates functions that accept any kind of data structure
+function makeArbitraryDataTransformation(f) {
+  return function (data, options) {
+    if (isArray(data)) {
+      return transformArray(data, f, options);
+    } else if (isObject(data)) {
+      return transformObjectKeys(data, f, options);
+    } else {
+      return data;
+    }
+  };
+}
+
 function exportTransformation(name) {
   var f = changeCase[name];
   module.exports[name + 'Keys'] = makeObjectTransformation(f);
   module.exports[name + 'Array'] = makeArrayTransformation(f);
+  module.exports['to' + changeCase.ucFirst(name)] = makeArbitraryDataTransformation(f);
 }
 
+// reexport all functions exported by `changeCase`
 for (var i in changeCase) {
   if (changeCase.hasOwnProperty(i)) {
     module.exports[i] = changeCase[i];
@@ -531,5 +553,5 @@ for (var i = 0; i < transformationNames.length; i++) {
   exportTransformation(transformationNames[i]);
 }
 
-},{"./transformations":21,"change-case":1}]},{},[22])(22)
+},{"./transformations":21,"change-case":2}]},{},[22])(22)
 });
