@@ -4,7 +4,8 @@
   "description": "Change case of object and arrays",
   "main": "index.js",
   "scripts": {
-    "test": "make coveralls"
+    "test": "make coveralls",
+    "test_local": "make test"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "chai": "^3.2.0",
     "coveralls": "^2.11.4",
+    "istanbul": "^0.4.5",
     "mocha": "^2.2.5"
   }
 }
