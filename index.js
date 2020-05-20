@@ -64,7 +64,10 @@ function transformObjectKeys(object, f, options) {
   for (var key in object) {
     if (object.hasOwnProperty(key)) {
       var value = object[key];
-      var newKey = f(key, options.locale);
+      var newKey = key
+      if (!(options.exclude && options.exclude.indexOf(key) >= 0)) {
+        newKey = f(key, options.locale);
+      }
       if (result.hasOwnProperty(newKey) && options.throwOnDuplicate) {
         throw new Error('duplicated key ' + newKey);
       }
