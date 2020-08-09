@@ -1,6 +1,6 @@
 {
   "name": "change-object-case",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Change case of object and arrays",
   "main": "index.js",
   "scripts": {
