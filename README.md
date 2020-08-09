@@ -55,6 +55,8 @@ changeCase.camelKeys({foo_bar: {bar_baz: [{baz_qux: 1}]}});
 // {fooBar: {barBaz: [{bazQux: 1}]}}
 ```
 
+You can pass `{exclude: array[string]}` to exclude keys from the transformation.
+
 ### Key collision
 
 When converting case, some keys can possibliy collide.
